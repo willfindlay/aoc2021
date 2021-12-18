@@ -9,8 +9,8 @@ fn part1() {
         .collect();
     let num_count = nums.len();
     for n in nums {
-        for i in 0..BITS {
-            counts[i] += (if n & (1 << i) == 0 { 0 } else { 1 }) as usize;
+        for (i, count) in counts.iter_mut().enumerate().take(BITS) {
+            *count += (if n & (1 << i) == 0 { 0 } else { 1 }) as usize;
         }
     }
     let gamma: u16 = counts.iter().enumerate().fold(0, |gamma, (i, &count)| {

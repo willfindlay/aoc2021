@@ -1,7 +1,6 @@
 use anyhow::Result;
 use lazy_static::lazy_static;
 use regex::Regex;
-use std::ops::Deref;
 use std::{collections::HashMap, str::FromStr};
 
 lazy_static! {
@@ -42,10 +41,7 @@ struct Diagram {
 }
 
 fn part1() -> Result<()> {
-    let lines: Vec<_> = INPUT
-        .lines()
-        .map(|s| Line::from_str(s))
-        .collect::<Result<_>>()?;
+    let lines: Vec<_> = INPUT.lines().map(Line::from_str).collect::<Result<_>>()?;
 
     let mut diagram = Diagram {
         spaces: HashMap::default(),
@@ -76,10 +72,7 @@ fn part1() -> Result<()> {
 }
 
 fn part2() -> Result<()> {
-    let lines: Vec<_> = INPUT
-        .lines()
-        .map(|s| Line::from_str(s))
-        .collect::<Result<_>>()?;
+    let lines: Vec<_> = INPUT.lines().map(Line::from_str).collect::<Result<_>>()?;
 
     let mut diagram = Diagram {
         spaces: HashMap::default(),
