@@ -17,14 +17,13 @@ fn part1() -> u32 {
 }
 
 fn part2() -> u32 {
-    let mut crabs: Vec<u32> = INPUT
+    let crabs: Vec<u32> = INPUT
         .lines()
         .next()
         .unwrap()
         .split_terminator(',')
         .map(|s| s.parse().unwrap())
         .collect();
-    crabs.sort_unstable();
     let mean = crabs.iter().sum::<u32>() as f64 / crabs.len() as f64;
     let lo = mean.floor() as u32;
     let hi = mean.ceil() as u32;
