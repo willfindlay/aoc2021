@@ -19,9 +19,8 @@ fn part1() {
     let num_unique_counts = INPUT
         .lines()
         .map(|s| s.split_once(" | ").unwrap().1)
-        .map(|s| s.split_terminator(' ').map(|s| s.len() as u32))
-        .flatten()
-        .filter(|len| NUM_SEGMENTS_UNIQUE.get(&len).is_some())
+        .flat_map(|s| s.split_terminator(' ').map(|s| s.len() as u32))
+        .filter(|len| NUM_SEGMENTS_UNIQUE.get(len).is_some())
         .count();
     println!("{}", num_unique_counts)
 }
@@ -33,16 +32,14 @@ fn part2() {
         // We need to find the set of segments that decodes to a one...
         let one = patterns
             .split_terminator(' ')
-            .filter(|p| p.len() == 2)
-            .next()
+            .find(|p| p.len() == 2)
             .map(str::chars)
             .map(HashSet::<char>::from_iter)
             .unwrap();
         // ... and the set that decodes to a four.
         let four = patterns
             .split_terminator(' ')
-            .filter(|p| p.len() == 4)
-            .next()
+            .find(|p| p.len() == 4)
             .map(str::chars)
             .map(HashSet::<char>::from_iter)
             .unwrap();
